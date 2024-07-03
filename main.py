@@ -50,7 +50,7 @@ def write(envfile, name, overwrite):
     """
     path = f"{ENV_DIR}/{name}"
 
-    if not os.path.exists(path) or not os.path.isfile(envfile):
+    if not os.path.exists(path) or not os.path.isfile(path):
         click.secho(f"{name} environment is not saved", blink=True, bold=True, fg="red")
         return
 
