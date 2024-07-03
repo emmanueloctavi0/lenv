@@ -1,18 +1,19 @@
 import click
+from click import format_filename
 import shutil
 import os
 
 import click.shell_completion
 
 
-# TODO: Get the user directory
-ENV_DIR = "/home/emma/.lenv/environments"
+ENV_DIR = click.get_app_dir("lenv")
 
 
 @click.group()
 def lenv():
     """Manage your environment variables with a simple CLI"""
-    pass
+    if not os.path.exists(ENV_DIR):
+        os.mkdir(ENV_DIR) 
 
 
 @lenv.command()
@@ -24,7 +25,7 @@ def save(envfile, name, overwrite):
     if not os.path.exists(envfile) or not os.path.isfile(envfile):
         click.secho(f"{envfile} file is not present in the current path", blink=True, bold=True, fg="red")
         return
-    
+
     path = f"{ENV_DIR}/{name}"
 
     if os.path.exists(path) and not overwrite:
@@ -36,7 +37,7 @@ def save(envfile, name, overwrite):
 
 def complete_env_vars(ctx, param, incomplete):
     envs = [f for f in os.listdir(ENV_DIR) if os.path.isfile(os.path.join(ENV_DIR, f))]
-    return [item for item in envs if item.startswith(incomplete)]
+    return [format_filename(item) for item in envs if item.startswith(incomplete)]
 
 
 @lenv.command()
@@ -69,7 +70,7 @@ def ls():
     files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
     for _file in files:
-        click.secho(f"- {_file}", fg="green")
+        click.secho(f"- {format_filename(_file)}", fg="green")
 
     click.secho(f"\n{len(files)} environments saved", fg="green")
 
