@@ -2,17 +2,20 @@ import click
 import shutil
 import os
 
+import click.shell_completion
 
+
+# TODO: Get the user directory
 ENV_DIR = "/home/emma/.lenv/environments"
 
 
 @click.group()
-def cli():
+def lenv():
     """Manage your environment variables with a simple CLI"""
     pass
 
 
-@cli.command()
+@lenv.command()
 @click.option('--envfile', default=".env", help='Name of the file to be saved')
 @click.option('--overwrite/--no-overwrite', default=False, help='Overwrite env name')
 @click.argument('name')
@@ -21,13 +24,55 @@ def save(envfile, name, overwrite):
     if not os.path.exists(envfile) or not os.path.isfile(envfile):
         click.secho(f"{envfile} file is not present in the current path", blink=True, bold=True, fg="red")
         return
+    
+    path = f"{ENV_DIR}/{name}"
 
-    if os.path.exists(f"{ENV_DIR}/{name}") and not overwrite:
-        click.confirm(f"{name} env currently exists. You want to override?")
+    if os.path.exists(path) and not overwrite:
+        click.confirm(f"{name} env currently exists. You want to override?", abort=True)
 
-    shutil.copyfile(envfile, f"{ENV_DIR}/{name}")
+    shutil.copyfile(envfile, path)
     click.secho(f"{envfile} saved as {name}", fg="green")
 
 
+def complete_env_vars(ctx, param, incomplete):
+    envs = [f for f in os.listdir(ENV_DIR) if os.path.isfile(os.path.join(ENV_DIR, f))]
+    return [item for item in envs if item.startswith(incomplete)]
+
+
+@lenv.command()
+@click.option('--envfile', default=".env", help='Name of the file to be saved')
+@click.option('--overwrite/--no-overwrite', default=False, help='Overwrite env name')
+@click.argument('name', shell_complete=complete_env_vars)
+def write(envfile, name, overwrite):
+    """Write the environment file in the current path.
+    Default write as .env file
+    """
+    path = f"{ENV_DIR}/{name}"
+
+    if not os.path.exists(path) or not os.path.isfile(envfile):
+        click.secho(f"{name} environment is not saved", blink=True, bold=True, fg="red")
+        return
+
+    if os.path.exists(f"{envfile}") and not overwrite:
+        click.confirm(f"{envfile} file actually exists in the current directory. Do you want to override?", abort=True)
+
+    shutil.copyfile(path, f"{envfile}")
+    click.secho(f"{name} written as {envfile}", fg="green")
+
+
+@lenv.command()
+def ls():
+    """List all environments saved
+    """
+    path = f"{ENV_DIR}"
+
+    files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+
+    for _file in files:
+        click.secho(f"- {_file}", fg="green")
+
+    click.secho(f"\n{len(files)} environments saved", fg="green")
+
+
 if __name__ == '__main__':
-    cli()
+    lenv()
