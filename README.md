@@ -1,5 +1,5 @@
 
-Command to manage environments variables, the idea is because everyday I have to work with .env files with different projects and environments like dev, staging and prod.
+Command to manage environments variables, the idea is because everyday I have to work with .env files with different projects and environments like dev, staging and local.
 
 Examples:
 
