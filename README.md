@@ -1,7 +1,16 @@
 
-Command to manage environments variables, the idea is because everyday I have to work with .env files with different projects and environments like dev, staging and local.
+CLI to manage environments variables, the idea is because everyday I have to work with .env files with different projects and environments like dev, staging and local.
 
-Examples:
+## Installation
+
+To install the package, simply run:
+
+```bash
+pip install envm
+```
+
+
+## Examples:
 
 1. Save the current .env (environment) file in the database environments
 ```bash
