@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(
-    name='lenv',
+    name='envm',
     version='0.0.1',
     py_modules=['main'],
     install_requires=[
@@ -10,7 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'lenv = main:lenv',
+            'envm = main:lenv',
         ],
     },
 )
