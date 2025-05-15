@@ -1,9 +1,12 @@
 [project]
 name = "lenv"
 version = "0.1.0"
-description = "Add your description here"
+description = "Command to manage environments variables, the idea is because everyday I have to work with .env files with different projects and environments like dev, staging and local."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "click>=8.2.0",
 ]
+
+[project.scripts]
+lenv = "main:lenv"
