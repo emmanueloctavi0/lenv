@@ -87,6 +87,7 @@ def ls():
     path = f"{ENV_DIR}"
 
     files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+    files.sort()
 
     for _file in files:
         click.secho(f"- {format_filename(_file)}", fg="green")
