@@ -8,9 +8,9 @@ Examples:
 $ lenv save users.dev
 ```
 
-2. Write a file called .env in my current path:
+2. Use a file called .env in my current path:
 ```bash
-$ lenv write users.dev
+$ lenv use users.dev
 ```
 
 3. (WIP) The next command should "export" the environments in my current shell session:

@@ -44,8 +44,8 @@ def complete_env_vars(ctx, param, incomplete):
 @click.option('--envfile', default=".env", help='Name of the file to be saved')
 @click.option('--overwrite/--no-overwrite', default=False, help='Overwrite env name')
 @click.argument('name', shell_complete=complete_env_vars)
-def write(envfile, name, overwrite):
-    """Write the environment file in the current path.
+def use(envfile, name, overwrite):
+    """Use the environment file in the current path.
     Default write as .env file
     """
     path = f"{ENV_DIR}/{name}"
