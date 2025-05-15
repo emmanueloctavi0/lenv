@@ -25,8 +25,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/emmanueloctavi0/lenv"
-Issues = "https://github.com/emmanueloctavi0/lenv/issues"
+Homepage = "https://github.com/emmanueloctavi0/envm"
+Issues = "https://github.com/emmanueloctavi0/envm/issues"
 
 [project.scripts]
 envm = "main:lenv"
