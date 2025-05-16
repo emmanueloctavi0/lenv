@@ -29,7 +29,7 @@ Homepage = "https://github.com/emmanueloctavi0/envm"
 Issues = "https://github.com/emmanueloctavi0/envm/issues"
 
 [project.scripts]
-envm = "main:lenv"
+envm = "main:envm"
 
 [tool.hatch.build.targets.wheel]
 packages = ["."]
