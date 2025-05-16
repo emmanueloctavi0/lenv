@@ -1,5 +1,4 @@
-
-CLI to manage environments variables, the idea is because everyday I have to work with .env files with different projects and environments like dev, staging and local.
+CLI to manage environment variables. This tool was created to simplify working with multiple .env files across different projects and environments (development, staging, and local).
 
 ## Installation
 
@@ -9,25 +8,28 @@ To install the package, simply run:
 pip install envm
 ```
 
+## Examples
 
-## Examples:
-
-1. Save the current .env (environment) file in the database environments
+1. Save the current .env file to the environments database:
 ```bash
 $ envm save users.dev
 ```
 
-2. Use a file called .env in my current path:
+2. Create a .env file in the current directory:
 ```bash
 $ envm use users.dev
 ```
 
-3. (WIP) The next command should "export" the environments in my current shell session:
-```bash
-envm export users.dev
+## Enable Shell Completion
+
+Enable autocompletion for your environment variable files
+
+### zsh
+```shell
+curl https://raw.githubusercontent.com/emmanueloctavi0/envm/refs/heads/main/src/completion/envm_complete.zsh >> ~/.zshrc
 ```
 
-4. (WIP) Clean my current env space (--envm flag is optional)
-```bash
-envm clean --envm users.prod
+### bash
+```shell
+curl https://raw.githubusercontent.com/emmanueloctavi0/envm/refs/heads/main/src/completion/envm_complete.bash >> ~/.bashrc
 ```
