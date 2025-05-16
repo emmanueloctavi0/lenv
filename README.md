@@ -8,14 +8,22 @@ To install the package, simply run:
 pip install envm
 ```
 
-## Examples
+## Commands
 
-1. Save the current .env file to the environments database:
+### save
+Save the current .env file to the environments database:
 ```bash
 $ envm save users.dev
 ```
 
-2. Create a .env file in the current directory:
+### ls
+List all your saved environment files:
+```bash
+$ envm ls
+```
+
+### use
+Create a .env file in the current directory:
 ```bash
 $ envm use users.dev
 ```
