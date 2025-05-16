@@ -10,7 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'envm = main:lenv',
+            'envm = main:envm',
         ],
     },
 )
