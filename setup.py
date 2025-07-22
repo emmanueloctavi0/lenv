@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='envm',
-    version='0.0.1',
+    version='0.2.3',
     py_modules=['main'],
     install_requires=[
         'Click',
